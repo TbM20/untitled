@@ -1,4 +1,4 @@
-#ifndef BOOK_MANAGEMENT_GUARD__H 
+#ifndef BOOK_MANAGEMENT_GUARD__H
 #define BOOK_MANAGEMENT_GUARD__H
 
 
@@ -37,19 +37,19 @@ int add_book(struct Book book);
 int remove_book(struct Book book);
 
 //finds books with a given title.
-//returns a BookArray structure, where the field "array" is a newly allocated array of books, or null if no book with the 
+//returns a BookArray structure, where the field "array" is a newly allocated array of books, or null if no book with the
 //provided title can be found. The length of the array is also recorded in the returned structure, with 0 in case
 //array is the null pointer.
 struct BookArray find_book_by_title(const char* title);
 
 //finds books with the given authors.
-//returns a BookArray structure, where the field "array" is a newly allocated array of books, or null if no book with the 
+//returns a BookArray structure, where the field "array" is a newly allocated array of books, or null if no book with the
 //provided title can be found. The length of the array is also recorded in the returned structure, with 0 in case
 //array is the null pointer.
 struct BookArray find_book_by_author(const char* author);
 
 //finds books published in the given year.
-//returns a BookArray structure, where the field "array" is a newly allocated array of books, or null if no book with the 
+//returns a BookArray structure, where the field "array" is a newly allocated array of books, or null if no book with the
 //provided title can be found. The length of the array is also recorded in the returned structure, with 0 in case
 //array is the null pointer.
 struct BookArray find_book_by_year(unsigned int year);
@@ -61,15 +61,21 @@ typedef struct User{
 	int  IDheld[30];
 	int currentBorrowed;
 	int totalUsers;
+	int UserId;
 }Users;
 
 extern Users *userlist;
 extern struct BookArray Bookcollection;
-int RegisterSystem(char* username, char* password, char* name, char* emails, int usernumber);
+int RegisterSystem(const char* username,const char* password,const char* name,const char* emails,const int usernumber);
 int searching();
-int Borrow(Users*a);
-int returns(Users*b);
-int LoginSystem(char* username, char* password);
+int Borrow(int a);
+int returns(int a);
+int LoginSystem(const char* username,const char* password);
+int load_users(FILE* file,FILE *files);
+
+int store_users(FILE* file);
+
+int store_loans_record(FILE*files);
 
 
 #endif
